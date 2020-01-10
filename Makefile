@@ -4,7 +4,7 @@
 
 
 NAME     := secret-sync-operator
-REGISTRY ?= docker.io/veraxnet
+REGISTRY ?= docker.io/menta2l
 ARCH ?= $(shell go env GOARCH)
 MULTI_ARCH_IMAGE = $(REGISTRY)/$(NAME)-${ARCH}
 TAG ?= master
