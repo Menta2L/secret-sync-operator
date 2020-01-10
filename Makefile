@@ -4,16 +4,14 @@
 
 
 NAME     := secret-sync-operator
-VERSION  := $(shell git describe --tags --exact-match 2> /dev/null || git rev-parse --short HEAD || echo "unknown")
-REVISION := $(shell git rev-parse HEAD)
 REGISTRY ?= docker.io/veraxnet
 ARCH ?= $(shell go env GOARCH)
 MULTI_ARCH_IMAGE = $(REGISTRY)/$(NAME)-${ARCH}
 TAG ?= master
 DOCKER ?= docker
 PKG = github.com/menta2l/$(NAME)
-REPO_INFO= "unknow" 
-GIT_COMMIT = "unknown"
+REPO_INFO ?= $(shell git config --get remote.origin.url)
+GIT_COMMIT ?= git-$(shell git rev-parse --short HEAD)
 GOBUILD_FLAGS := -v
 LDFLAGS := -s -w -extldflags -static
 BUILD_TAGS := -tags netgo -installsuffix netgo
